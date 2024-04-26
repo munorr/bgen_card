@@ -1631,12 +1631,15 @@ bgenCard_classes = (BGENCARD_PT_bgenCardProperties, BGENCARD_PT_bgenCardExpandPr
                 
 
 def register():  
+    addon_updater_ops.register(bl_info)
     for cls in bgenCard_classes:
+        addon_updater_ops.make_annotations(cls)
         bpy.utils.register_class(cls)
     bpy.types.Scene.bgenCard_tools = bpy.props.PointerProperty(type= BGENCARD_PT_bgenCardProperties)
     bpy.types.Object.bgenCard_expand = bpy.props.PointerProperty(type= BGENCARD_PT_bgenCardExpandProp)
                    
 def unregister(): 
+    addon_updater_ops.unregister()
     for cls in bgenCard_classes:
         bpy.utils.unregister_class(cls)
     del bpy.types.Scene.bgenCard_tools
